@@ -20,8 +20,19 @@
    ],
    "subsets": [
     "latin",
-    "latin-ext",
-    "vietnamese"
+    "latin-ext"
+   ]
+  },
+  {
+   "kind": "webfonts#webfont",
+   "family": "Archivo Black",
+   "variants": [
+    "400",
+    "400italic"
+   ],
+   "subsets": [
+    "latin",
+    "latin-ext"
    ]
   }
  ]

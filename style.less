@@ -1,0 +1,132 @@
+h1, h2, h3, h4, h5, h6{
+	color: #222222;
+	font-weight: 100;
+	margin: 0.1em 0;
+}
+
+@after-font = "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+.detach{
+	font-size: 22px;
+}
+
+.medium-text{
+	font-size: 16px;
+}
+.margin-top-100{
+	margin-top: 100px;
+}
+
+.highlight{
+	color: @pl-link;
+}
+
+.bold{
+	font-weight: 700;
+}
+
+/*!
+* Mega Title Section
+*/
+
+.mega-title-reused{
+	position: relative;
+
+	h1{
+		color:#444;
+		font-size: 65px;
+		font-weight: 400;
+		line-height: .9em;
+		margin-top: 0px;
+		padding-top: 0px;
+		position: relative;
+		text-transform: uppercase;
+		word-wrap: break-word;
+		z-index: 2;
+	}
+
+	.mega-title{
+		margin-top:95px;
+		position: relative;
+
+		span{
+			display: block;
+			position: relative;
+			z-index: 3;
+		}
+
+		&:after{
+			color:#f5f5f5;
+			content: attr( data-shadow );
+			font-family: @after-font;
+			font-size: 300px;
+			font-style: italic;
+			font-weight: 700;
+			left: -60px;
+			position: absolute;
+			text-transform: uppercase;
+			top:0;
+			z-index: 1;
+		}
+	}
+
+	.align-right{
+		text-align: right;
+	}
+
+	.align-center{
+		text-align: center;
+	}
+
+	.align-left{
+		text-align: left;
+	}
+
+	.align-justify{
+		text-align: justify;
+	}
+}
+
+
+.section-mega-title{
+
+	.mega-title-reused();
+
+	h1{
+		font-size: 60px;
+	}
+
+	.mega-title{
+		margin-top: 1em;
+		&:after{
+			font-size: 120px;
+			left: 0px;
+		}
+		span{
+			display: none;
+		}
+	}
+}
+
+.nested-section-area
+{
+	.section-mega-title
+	{
+		.mega-title-reused();
+	}
+}
+
+
+/*!
+* Mega Title Section
+*/
+.section-ibox{
+	h4{
+		font-family: @baseFontFamily;
+		font-size: 18px;
+		font-weight: 600;
+	}
+	.ibox-desc{
+		font-size: 14px;
+	}
+}
