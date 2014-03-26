@@ -20,7 +20,7 @@ class TmVoyantPinSwitch extends PageLinesSection {
     ?>
 		<script>
 			jQuery(document).ready(function($) {
-				jQuery('.tabpinnes').tabpinnes();
+				jQuery('<?php echo "#pin-switch".$this->meta["clone"]?> .tabpinnes').tabpinnes();
 			});
 		</script>
     <?php
