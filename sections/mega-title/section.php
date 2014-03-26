@@ -40,21 +40,9 @@ class TmVoyantMegaTitle extends PageLinesSection {
 						'label' 		=> __( 'Alignment', 'voyant' ),
 						'opts'			=> array(
 							'align-left'		=> array('name' => 'Align Left (Default)'),
-							'align-right'		=> array('name' => 'Align Right'),
-							'align-center'	=> array('name' => 'Center'),
-							'align-justify'	=> array('name' => 'Justify'),
+							'align-right'		=> array('name' => 'Align Right')
 						)
-					),
-					array(
-						'type' 			=> 'select',
-						'key'			=> 'mega_type',
-						'label' 		=> __( 'Type', 'voyant' ),
-						'opts'			=> array(
-							'align-left'		=> array('name' => 'Align Left (Default)'),
-							'align-right'		=> array('name' => 'Align Right'),
-						)
-					),
-
+					)
 				)
 			)
 		);
@@ -73,9 +61,11 @@ class TmVoyantMegaTitle extends PageLinesSection {
 		//var_dump($align);
 
 	?>
-		<div class="mega-title" data-shadow="<?php echo $shadow; ?>">
-			<h1 class="<?php echo $align; ?>" data-sync="mega_title"><?php echo $title; ?></h1>
-			<span class="<?php echo $align ?> medium-text" data-sync="mega_description"><?php echo $description; ?></span>
+		<div class="holder">
+			<div class="mega-title <?php echo $align; ?>" data-shadow="<?php echo $shadow; ?>">
+				<h1 class="<?php echo $align; ?>" data-sync="mega_title"><?php echo $title; ?></h1>
+				<span class="<?php echo $align ?> medium-text" data-sync="mega_description"><?php echo $description; ?></span>
+			</div>
 		</div>
 
 	<?php

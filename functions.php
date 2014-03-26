@@ -29,13 +29,15 @@ class Voyant{
 		$this->url = sprintf('%s', PL_CHILD_URL);
 		$this->dir = sprintf('/%s', PL_CHILD_DIR);
 
-		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' ) );
-		$this->init();
+		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
+		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
+
+		//$this->init();
 	}
 
-	function init()
+	function voyant_scripts()
 	{
-
+		wp_enqueue_script( 'voyant-js', get_template_directory_uri() . '/assets/js/voyant.js', array(), '1.0.0', true );
 	}
 
 	/**

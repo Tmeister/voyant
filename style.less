@@ -1,20 +1,42 @@
 h1, h2, h3, h4, h5, h6{
-	color: #222222;
 	font-weight: 100;
 	margin: 0.1em 0;
+	text-transform: uppercase;
+}
+.hentry h1, .hentry h2, .hentry h3, .hentry h4, .hentry h5, .hentry h6{
+	margin: 0.1em 0;
+	text-transform: uppercase;
 }
 
 @after-font = "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+body,
+html{
+	overflow-x: hidden;
+}
+
 
 .detach{
 	font-size: 22px;
 }
 
 .medium-text{
-	font-size: 16px;
+	font-size: 18px;
 }
 .margin-top-100{
 	margin-top: 100px;
+}
+
+.margin-top-75{
+	margin-top: 75;
+}
+
+.margin-top-50{
+	margin-top: 50px;
+}
+
+.margin-top-25{
+	margin-top: 25px;
 }
 
 .highlight{
@@ -23,6 +45,21 @@ h1, h2, h3, h4, h5, h6{
 
 .bold{
 	font-weight: 700;
+}
+
+.more-link{
+	padding: 10px 20px;
+	background-color: @pl-link;
+	color: white;
+	border-radius: 3px;
+	&:hover{
+	}
+}
+
+.small-titles{
+	font-family: @baseFontFamily;
+	font-size: 18px;
+	font-weight: 600;
 }
 
 /*!
@@ -65,8 +102,8 @@ h1, h2, h3, h4, h5, h6{
 			left: -60px;
 			position: absolute;
 			text-transform: uppercase;
-			top:0;
-			z-index: 1;
+			top:-20px;
+			z-index: 0;
 		}
 	}
 
@@ -88,31 +125,104 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+/*!
+* Mega Title Section FULL WIDTH
+*/
 .section-mega-title{
 
 	.mega-title-reused();
 
 	h1{
-		font-size: 60px;
+		font-size: 65px;
+	}
+	.holder{
+		max-width: @plContentWidth;
+		margin: 0 auto;
+		.mega-title{
+			margin: 0em;
+			h1{
+				padding-left: 15%;
+				margin-bottom: 10px;
+			}
+
+			&:after{
+				margin-left: 10%;
+				padding-top: 25px;
+				padding-left: 5%;
+				font-size: 120px;
+				left:0;
+				top: 0px;
+				font-style: normal;
+				width: 300%;
+				background: #fff;
+				height: 100px;
+				z-index:0;
+			}
+			span{
+				display: none;
+			}
+		}
+		&:before{
+			width: 50%;
+			height: 65px;
+			background: #f5f5f5;
+			content: ' ';
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 	}
 
-	.mega-title{
-		margin-top: 1em;
-		&:after{
-			font-size: 120px;
-			left: 0px;
-		}
-		span{
-			display: none;
-		}
-	}
+
 }
 
-.nested-section-area
-{
+
+/*!
+* Mega Title Section CONTENT WIDTH
+*/
+.nested-section-area{
 	.section-mega-title
 	{
 		.mega-title-reused();
+		.holder{
+			.mega-title{
+				h1{
+					padding: 0px;
+					margin-bottom: 15px;
+					&:before{
+						content: '';
+						width: 60px;
+						height: 5px;
+						position: absolute;
+						background: @pl-link;
+						top: -15px;
+						left: 0;
+					}
+					&.align-right{
+						&:before{
+							left: initial;
+							right: 0;
+						}
+					}
+				}
+				&:after{
+					width: 100%;
+					background: transparent;
+					margin-left: 0;
+					padding-top: 0;
+					padding-left: 0;
+				}
+				&.align-right{
+					&:after{
+						left: initial;
+						right: -30px;
+					}
+				}
+			}
+			&:before{
+				display: none;
+			}
+		}
 	}
 }
 
@@ -121,12 +231,165 @@ h1, h2, h3, h4, h5, h6{
 * Mega Title Section
 */
 .section-ibox{
-	h4{
-		font-family: @baseFontFamily;
-		font-size: 18px;
-		font-weight: 600;
+
+		h4{
+			.small-titles();
+		}
+
+		.ibox-desc{
+			font-size: 14px;
+		}
+
+	.ibox {
+		&.top-aligned{
+			h4{
+				text-transform: uppercase;
+			}
+
+			.ibox-media{
+				max-width: 40%;
+			}
+
+			.ibox-desc{
+				.ibox-link{
+					margin-top: 1.5em;
+					a{
+						.more-link();
+					}
+				}
+			}
+		}
+
+		&.left-aligned{
+			&.wrap-icon{
+
+			}
+		}
 	}
-	.ibox-desc{
-		font-size: 14px;
+}
+
+/*!
+* TextBox Section
+*/
+.section-textbox{
+	strong{
+		&:first-child{
+			.small-titles();
+			margin-bottom: .5em;
+			display: inline-block;
+		}
+	}
+}
+
+/*!
+* Pin Switch Section
+*/
+.section-pin-switch{
+	.holder{
+		position: relative;
+		.info{
+			text-align: center;
+			.contents{
+				position: relative;
+				min-height: 100px;
+				display: block;
+				.ctab{
+					position: absolute;
+					top:0;
+					left: 0;
+					width: 100%;
+					.title{
+						.small-titles();
+						margin-bottom: .5em;
+						text-transform: uppercase;
+					}
+				}
+			}
+		}
+		.tabbed{
+			text-align: center;
+			.pines{
+				text-align: center;
+				.tab{
+					float: left;
+					position: relative;
+					&.active{
+						a{
+							color:@pl-link;
+							.pin{
+								background: @pl-link;
+							}
+						}
+					}
+					a{
+						display: block;
+						color: #bababa;
+						.pin{
+							content: "";
+							width: 12px;
+							height: 12px;
+							border-radius:50%;
+							background: #d5d5d5;
+							display: inline-block;
+							z-index: 200;
+							position: relative;
+						}
+
+						.line{
+							&:before{
+								content: "";
+								display: inline-block;
+								border-bottom: 1px solid #dadada;
+								width: 50%;
+								height: 0px;
+								position: absolute;
+								top: 10px;
+								left: 0;
+							}
+							&:after{
+								content: "";
+								display: inline-block;
+								border-bottom: 1px solid #dadada;
+								width: 50%;
+								height: 0px;
+								position: absolute;
+								top: 10px;
+								right: 0;
+							}
+						}
+
+						.icon{
+							margin: 10px 0 5px 0;
+						}
+
+						h4{
+							.small-titles();
+							text-transform: initial;
+						}
+
+						&:hover{
+							color:@pl-link;
+							.pin{
+								background: @pl-link;
+							}
+						}
+					}
+					&:first-child{
+						.line{
+							&:before{
+								display: none;
+							}
+						}
+					}
+					&:last-child{
+						.line{
+							&:after{
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
