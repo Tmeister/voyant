@@ -22,21 +22,19 @@
     }
     Plugin.prototype = {
         init: function() {
-            // Place initialization logic here
-            // You already have access to the DOM element and
-            // the options via the self, e.g. this.element
-            // and this.settings
-            // you can add more functions like the one below and
-            // call them like so: this.yourOtherFunction(this.element, this.settings).
             var $ele = $(this.element);
             var ctabs,
                 currentTab,
+                contents,
                 self = this;
             ctabs = $ele.find('.ctab');
             ctabs.fadeOut();
             currentTab = $(ctabs[0]);
             currentTab.fadeIn('slow');
+            contents = $ele.find('.contents');
             self.pinnes = $ele.find('.tab');
+            contents.animate({height: currentTab.height()}, 'slow');
+
             /**********************************************************
              ** HANDLE MANUAL CLICK
              **********************************************************/
@@ -61,6 +59,7 @@
                     index = parseInt(tab.data('name').split('ctab').join(''));
                     self.currentIndex = (index - 1);
                     currentTab.fadeOut('slow', function() {
+                    	contents.animate({height: tab.height()}, 'slow');
                         tab.fadeIn('slow');
                         currentTab = tab;
                     });
