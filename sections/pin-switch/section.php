@@ -69,58 +69,64 @@ class TmVoyantPinSwitch extends PageLinesSection {
 
 		<div class="holder tabpinnes">
 			<div class="row">
-				<div class="span8 offset2">
+				<div class="span12">
 					<div class="info">
 						<div class="contents">
 
-							<?php if (is_array($pin_array)): $pinnes = count( $pin_array ); $count = 1; ?>
+							<?php 	if (!is_array($pin_array)){
+										$pin_array = array('','','');
+									}
+									$pinnes = count($pin_array);
+									$count = 1;
+							?>
+							<?php
+								foreach ($pin_array as $pin):
+									$title = pl_array_get( 'title', $pin, 'Pin '. $count);
+									$text  = pl_array_get( 'text', $pin, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id lectus sem. Cras consequat lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id lectus sem. Cras consequat lorem.');
+							?>
 
-								<?php
-									foreach ($pin_array as $pin):
-										$title = pl_array_get( 'title', $pin, 'Pin '. $count);
-										$text  = pl_array_get( 'text', $pin, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id lectus sem. Cras consequat lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id lectus sem. Cras consequat lorem.');
-								?>
-
-									<div class="ctab" data-name="ctab<?php echo $count ?>">
-										<div class="title" data-sync="pin_array_item<?php echo $count?>_title">
-											<?php echo $title ?>
-										</div>
-										<div class="description" data-sync="pin_array_item<?php echo $count?>_text">
-											<?php echo do_shortcode( $text ); ?>
-										</div>
+								<div class="ctab" data-name="ctab<?php echo $count ?>">
+									<div class="title" data-sync="pin_array_item<?php echo $count?>_title">
+										<?php echo $title ?>
 									</div>
-								<?php $count++; endforeach ?>
-							<?php endif ?>
+									<div class="description" data-sync="pin_array_item<?php echo $count?>_text">
+										<?php echo do_shortcode( $text ); ?>
+									</div>
+								</div>
+							<?php $count++; endforeach ?>
 						</div>
 					</div>
 				</div>
 			</div> <!-- CONTENTS ROW -->
 			<div class="row">
-				<div class="span8 offset2">
+				<div class="span12">
 					<div class="tabbed">
 						<ul class="pines">
-							<?php if (is_array($pin_array)): $pinnes = count( $pin_array ); $count = 1; ?>
+							<?php 	if (!is_array($pin_array)){
+										$pin_array = array('','','');
+									}
+									$count = 1;
+							?>
 
-								<?php
-									foreach ($pin_array as $pin):
-										$icon_title = pl_array_get( 'icon_title', $pin, 'Pin '. $count);
-										$icon = pl_array_get( 'icon', $pin );
-										if(!$icon || $icon == ''){
-											$icons = pl_icon_array();
-											$icon = $icons[ array_rand($icons) ];
-										}
-										$width = ( 100 / $pinnes );
-								?>
-									<li class="tab <?php echo ($count == 1) ? 'active' : '' ?>" style="width:<?php echo $width ?>%">
-									    <a href="#tab1" data-name="tab<?php echo $count ?>">
-										    <div class="pin"></div>
-										    <div class="line"></div>
-										    <div class="icon"><i class="icon icon-2x icon-<?php echo $icon ?>"></i></div>
-										    <h4 data-sync="pin_array_item<?php echo $count?>_icon_title"><?php echo $icon_title ?></h4>
-									    </a>
-									</li>
-								<?php $count++; endforeach ?>
-							<?php endif ?>
+							<?php
+								foreach ($pin_array as $pin):
+									$icon_title = pl_array_get( 'icon_title', $pin, 'Pin '. $count);
+									$icon = pl_array_get( 'icon', $pin );
+									if(!$icon || $icon == ''){
+										$icons = pl_icon_array();
+										$icon = $icons[ array_rand($icons) ];
+									}
+									$width = ( 100 / $pinnes );
+							?>
+								<li class="tab <?php echo ($count == 1) ? 'active' : '' ?>" style="width:<?php echo $width ?>%">
+								    <a href="#tab1" data-name="tab<?php echo $count ?>">
+									    <div class="pin"></div>
+									    <div class="line"></div>
+									    <div class="icon"><i class="icon icon-2x icon-<?php echo $icon ?>"></i></div>
+									    <h4 data-sync="pin_array_item<?php echo $count?>_icon_title"><?php echo $icon_title ?></h4>
+								    </a>
+								</li>
+							<?php $count++; endforeach ?>
 						</ul>
 					</div>
 				</div>
