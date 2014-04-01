@@ -13,16 +13,16 @@
 class TmVoyantPinSwitch extends PageLinesSection {
 
 	function section_styles(){
-        wp_enqueue_script( 'tabpinnes', $this->base_url . '/tabpinnes.js', array( 'jquery' ), '1.0', true );
-    }
+		wp_enqueue_script( 'tabpinnes', $this->base_url . '/tabpinnes.js', array( 'jquery' ), '1.0', true );
+	}
 
     function section_head(){
     ?>
-		<script>
-			jQuery(document).ready(function($) {
-				jQuery('<?php echo "#pin-switch".$this->meta["clone"]?> .tabpinnes').tabpinnes();
-			});
-		</script>
+	<script>
+		jQuery(document).ready(function($) {
+			jQuery('<?php echo "#pin-switch".$this->meta["clone"]?> .tabpinnes').tabpinnes();
+		});
+	</script>
     <?php
     }
 
