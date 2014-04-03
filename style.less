@@ -611,6 +611,7 @@ html{
 			    position: absolute;
 			    top: 0;
 			    z-index: 1;
+			    width: 100%;
 			    &.current{
 					left: 0;
 				    opacity: 1;
@@ -626,6 +627,19 @@ html{
 							border-top-left-radius: 50%;
 							border-bottom-right-radius: 50%;
 							box-shadow: 0 0 0 10px rgba(255, 255, 255, .1);
+						}
+						&.drop-tl-br{
+							img{
+								border-bottom-left-radius: 50%;
+								border-top-right-radius: 50%;
+								border-top-left-radius: 0%;
+								border-bottom-right-radius: 0%;
+							}
+						}
+						&.drop-circle{
+							img{
+								border-radius: 50%;
+							}
 						}
 					}
 					.quote{
@@ -645,21 +659,12 @@ html{
 						}
 					}
 					.author{
+						.detach();
+						color:white;
 						a{
 							.detach();
 							color:white;
 							font-weight: 600;
-						}
-					}
-					&:hover{
-						.avatar{
-							img{
-								border-top-left-radius: 0%;
-								border-bottom-right-radius: 0%;
-								border-top-right-radius: 50%;
-								border-bottom-left-radius: 50%;
-								.transition(all .25s);
-							}
 						}
 					}
 				}
@@ -674,6 +679,39 @@ html{
 				cursor:pointer;
 				&.current{
 					color: rgba(255,255,255, 1)
+				}
+			}
+		}
+		&.light{
+			ul{
+				li{
+					color: @pl-text;
+					.testimonial{
+						.avatar{
+							img{
+								box-shadow: 0 0 0 10px rgba(0, 0, 0, .1);
+							}
+						}
+					}
+					.quote{
+						&:before{
+							color: rgba(0, 0, 0, .1);
+						}
+					}
+					.author{
+						color: @pl-text;
+						a{
+							color: @pl-text;
+						}
+					}
+				}
+			}
+			ol{
+				span{
+					color:rgba(0,0,0, .5);
+					&.current{
+					color: rgba(0,0,0, 1)
+				}
 				}
 			}
 		}
