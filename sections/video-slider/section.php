@@ -6,11 +6,17 @@
 	Description: Video Slider
 	Class Name: TmVoyantVideoSlider
 	Workswith: templates, main, content
-	Cloning: true
+	Cloning: false
 	Filter: component, full-width
 	Loading: active
 */
 class TmVoyantVideoSlider extends PageLinesSection {
+
+	function section_persistent(){
+		if( ! isset( $this->meta["clone"] ) ){
+			$this->meta["clone"] = 'no-clone';
+		}
+	}
 
 	function section_styles() {
 		wp_enqueue_script( 'BxSlider', $this->base_url . '/jquery.bxslider.min.js', array( 'jquery' ), '4.1.2', true );
@@ -30,7 +36,7 @@ class TmVoyantVideoSlider extends PageLinesSection {
 
 	function section_template() {
 		$source      = ( $this->opt('video_source') ) ? $this->opt('video_source') : 'MeQo-Rl9VFc';
-		$fullHeight  = ( $this->opt('video_full_height') == 'full' ) ? true : false;
+		$fullHeight  = ( $this->opt('video_full_height') == 'fixed' ) ? false : true;
 		$fixedHeight = ( $this->opt('video_height') ) ? $this->opt('video_height') : '500px';
 		$controls    = ( $this->opt('video_controls') ) ? $this->opt('video_controls') : 'bottom';
 		$mute        = ( $this->opt('video_mute') == 'unmute' ) ? 'false' : 'true';
@@ -38,12 +44,24 @@ class TmVoyantVideoSlider extends PageLinesSection {
 		$opacity     = ( $this->opt('video_opacity') ) ? $this->opt('video_opacity') : '.4';
 		$startat     = ( $this->opt('video_start') ) ? $this->opt('video_start') : '0';
 		$endsat      = ( $this->opt('video_end') ) ? $this->opt('video_end') : '0';
+		$exist_text  = ( $this->opt('video_exit_text') ) ? $this->opt('video_exit_text') : 'Click to exit fullscreen video';
+
 
 		$classHolder = ( $fullHeight ) ? 'full-height' : '';
 		$cssPlayer   = ( !$fullHeight) ? $fixedHeight : '';
+		$slides_array = $this->opt('slides_array');
+		if (!is_array($slides_array)){
+			$slides_array = array('','','');
+		}
+		$count = 1;
 	?>
 		<div class="holder <?php echo $classHolder ?>"  style="<?php echo $cssPlayer ?>" >
 	    	<div class="the-player" id="player-<?php echo $this->meta["clone"]?>"></div>
+	    	<div class="preloader">
+    			<div class="circleloader">
+    				<div class="circlebar"></div>
+    			</div>
+    		</div>
 	    	<div class="contents">
 	    		<div class="inner pl-content">
 	    			<?php if ($controls == 'top'): ?>
@@ -51,22 +69,22 @@ class TmVoyantVideoSlider extends PageLinesSection {
 	    					<i class="play icon icon-play"></i>
 	    				</div>
 	    			<?php endif ?>
+
 	    			<div class="slides pl-content">
 	    				<ul class="bxslider">
-	    					<li>
-	    						<h3 class="video-title">Yes, We just <i class="icon icon-heart"></i> what we do!</h3>
-	    						<p class="video-subhead	detach">Vestibulum sit amet sagittis nibh, at tempor lorem. <br>Donec iaculis urna at dapibus dignissim.</p>
-	    					</li>
-	    					<li>
-	    						<h3 class="video-title">Yes, We just <i class="icon icon-heart"></i> what we do 2!</h3>
-	    						<p class="video-subhead	detach">Vestibulum sit amet sagittis nibh, at tempor lorem. <br>Donec iaculis urna at dapibus dignissim.<br>Vestibulum sit amet sagittis nibh, at tempor lorem. <br>Donec iaculis urna at dapibus dignissim.</p>
-	    					</li>
-	    					<li>
-	    						<h3 class="video-title">Yes, We just <i class="icon icon-heart"></i> what we do 3!</h3>
-	    						<p class="video-subhead	detach">Vestibulum sit amet sagittis nibh, at tempor lorem. <br>Donec iaculis urna at dapibus dignissim.</p>
-	    					</li>
+	    					<?php
+	    						foreach ($slides_array as $slide):
+	    							$title = pl_array_get( 'title', $slide, 'Yes, We just <i class="icon icon-heart"></i> what we do '. $count.'!');
+									$text  = pl_array_get( 'text',  $slide, 'Vestibulum sit amet sagittis nibh, at tempor lorem. <br>Donec iaculis urna at dapibus dignissim.');
+	    					?>
+		    					<li>
+		    						<h3 class="video-title"><?php echo $title ?></h3>
+		    						<p class="video-subhead	detach"><?php echo do_shortcode($text); ?></p>
+		    					</li>
+	    					<?php $count++; endforeach ?>
 	    				</ul>
 	    			</div>
+
 	    			<?php if ($controls == 'bottom'): ?>
 	    				<div class="controls">
 	    					<i class="play icon icon-play"></i>
@@ -74,7 +92,9 @@ class TmVoyantVideoSlider extends PageLinesSection {
 	    			<?php endif ?>
 	    		</div>
 	    	</div>
-	    	<div class="hiddencontrol"></div>
+	    	<div class="hiddencontrol">
+	    		<span class="exit"><?php echo $exist_text ?></span>
+	    	</div>
 		</div>
 		<span
 			class="playersource"
@@ -184,6 +204,32 @@ class TmVoyantVideoSlider extends PageLinesSection {
 							'loop' => array( 'name' => 'True (Default)' ),
 							'once' => array( 'name' => 'False' )
 						)
+				),
+				array(
+					'key'   => 'video_exit_text',
+					'label' => __( 'Exit Text Indication', 'voyant' ),
+					'ref' 	=> __( 'This text will show when the user click in the play botton, the default text is <strong>"Click to exit fullscreen video</strong>"', 'voyant' ),
+					'type'  => 'text'
+				),
+			)
+		);
+
+		$opts[] = array(
+			'key'       => 'slides_array',
+			'type'      => 'accordion',
+			'col'       => 2,
+			'title'     => __('Video Slides Config', 'voyant'),
+			'post_type' => __('Slides', 'voyant'),
+			'opts'      => array(
+				array(
+					'key'		=> 'title',
+					'label'		=> __( 'Event Title', 'voyant' ),
+					'type'		=> 'textarea'
+				),
+				array(
+					'key'   => 'text',
+					'label' => __( 'Description', 'voyant' ),
+					'type'  => 'textarea'
 				)
 			)
 		);

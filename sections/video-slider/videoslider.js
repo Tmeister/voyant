@@ -25,9 +25,14 @@
 				var isPlaying = false;
 				var $contents = $('.contents', $el);
 				var $hidden = $('.hiddencontrol', $el);
+				var $exit = $('.exit', $el);
 				var $slides = $('.bxslider', $el);
+				var $preloader = $('.preloader', $el);
+				var slider;
+				var exitWait;
 
 				$hidden.hide();
+				$contents.fadeOut();
 
 				if( fullHeight.length > 0 ){
 					$win.resize(function(event) {
@@ -44,6 +49,10 @@
 								$hidden.show();
 								$('.mbYTP_wrapper', $el).css({opacity: 1});
 								isPlaying = true;
+								self.exitWait = setInterval(function(){
+									clearInterval(self.exitWait);
+									$exit.fadeOut('slow');
+								}, 4000)
 							});
 						}
 					});
@@ -55,7 +64,9 @@
 								$hidden.hide();
 								$video.muteYTPVolume();
 								$('.mbYTP_wrapper', $el).css({opacity: .4});
+								$exit.fadeIn();
 								isPlaying = false;
+								slider.goToNextSlide();
 							});
 						}
 					});
@@ -63,14 +74,22 @@
 				}
 
 				$video.mb_YTPlayer();
-				$slides.bxSlider({
-					mode:'fade',
-					adaptiveHeight: true,
-					pager:false,
-					auto:true,
-					controls:false,
-					pause:8000
+				$video.on('YTPUnstarted', function(event) {
+					$preloader.remove();
+					$contents.fadeIn('slow');
+
 				});
+
+				if( $slides.find('li').length > 1 ){
+					slider = $slides.bxSlider({
+						mode:'fade',
+						adaptiveHeight: true,
+						pager:false,
+						auto:true,
+						controls:false,
+						pause:8000
+					});
+				}
 			}
 		};
 
