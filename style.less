@@ -717,3 +717,79 @@ html{
 		}
 	}
 }
+
+/*!
+* Video Slider Section
+*/
+
+.section-video-slider{
+	.holder{
+		height: 500px;
+		position: relative;
+		.the-player{
+			z-index:10;
+			width: 100%;
+			height: 100%;
+			position:absolute;
+			top:0;
+			left: 0;
+		}
+		.hiddencontrol{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top:0;
+			left: 0;
+			z-index: 101;
+		}
+		.contents{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top:0;
+			left: 0;
+			background-image: url('@{plChildRoot}/assets/img/video-overlay.png');
+			z-index: 100;
+			display: table;
+			.inner{
+				display: table-cell;
+				color:white;
+				vertical-align: middle;
+				.controls{
+					width: 64px;
+					margin: 0 auto 30px;
+					cursor: pointer;
+					text-align: center;
+					.icon{
+						font-size: 25px;
+						line-height: 64px;
+						width: 64px;
+						border: 3px solid white;
+						border-radius: 50%;
+						padding-left: 2px;
+						.transition(all .2s);
+					}
+					&:hover{
+						.icon{
+							background-color: white;
+							color:@pl-text;
+							.transition(all .2s);
+							.scale(1.1);
+						}
+					}
+				}
+				.slides{
+					li{
+						text-align: center;
+						.video-title{
+							margin-bottom: .5em;
+						}
+						.video-subhead{
+							line-height: 1.5em;
+						}
+					}
+				}
+			}
+		}
+	}
+}
