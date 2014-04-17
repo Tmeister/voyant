@@ -853,6 +853,57 @@ html{
 	}
 }
 
+
+.fixed-top-pusher{
+	height: 0px !important;
+}
+
+.section-menu-voyant{
+
+	width: 100%;
+
+	.row > [class*="span"], .row-fluid > [class*="span"], .editor-row > [class*="span"] {
+        margin-bottom: 0px;
+    }
+
+	.menu-indicator{
+		color:@pl-base;
+		text-align: center;
+		height: 72px;
+		display: table-cell;
+		vertical-align: middle;
+
+		i{
+			font-size: 20px;
+			padding: 7px 10px;
+			background: rgba(0,0,0,.2);
+			border-radius: 3px;
+		}
+	}
+	.main_logo{
+		img{
+			max-width: 175px;
+			margin: 5px 0;
+		}
+	}
+}
+
+.pl-fixed-top{
+	background: transparent !important;
+}
+#fixed-top{
+	&.hide-menu{
+		margin-top: -100px;
+		.transition(all 1s);
+	}
+	&.show-menu{
+		margin-top: initial;
+		.transition(all 1s);
+		position: fixed !important;
+	}
+}
+
+//Loader Animations
 @-moz-keyframes bounce_loadingProgressG{
 	0%{margin-left:-256px;}
 	100%{margin-left:256px;}

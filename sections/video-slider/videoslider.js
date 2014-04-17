@@ -44,6 +44,9 @@
 					$play.click(function(event) {
 						event.preventDefault();
 						if( !isPlaying ){
+							//REMOVE
+							//$video.pauseYTP();
+							//return;
 							$contents.fadeOut('0', function() {
 								$video.unmuteYTPVolume();
 								$hidden.show();
@@ -73,12 +76,11 @@
 
 				}
 
-				$video.mb_YTPlayer();
-				$video.on('YTPUnstarted', function(event) {
+				//$video.mb_YTPlayer();
+				//$video.on('YTPUnstarted', function(event) {
 					$preloader.remove();
 					$contents.fadeIn('slow');
-
-				});
+				//});
 
 				if( $slides.find('li').length > 1 ){
 					slider = $slides.bxSlider({
