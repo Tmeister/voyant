@@ -1,3 +1,9 @@
 [submodule "dms"]
 	path = dms
 	url = git@github.com:pagelines/DMS.git
+[submodule "sections/icallout"]
+	path = sections/icallout
+	url = git@github.com:pagelines/icallout.git
+[submodule "sections/starbars"]
+	path = sections/starbars
+	url = git@github.com:pagelines/starbars.git
