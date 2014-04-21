@@ -12,9 +12,75 @@
 */
 class TmVoyantMenu extends PageLinesSection {
 
+
+
+	function section_styles() {
+		wp_enqueue_script( 'voyant-menu', $this->base_url . '/voyant-menu.js', array( 'jquery' ), '1.0', true );
+	}
+
+	function section_head(){
+	?>
+		<script>
+		jQuery(document).ready(function($) {
+			jQuery('.voyant-nav').voyantmenu();
+		});
+		</script>
+	<?php
+	}
+
+	function section_template() {
+		$color     = $this->opt('menu_bg') ? pl_hashify($this->opt('menu_bg')) : '#000000';
+		$alpha     = $this->opt('menu_bg_alpha') ? $this->opt('menu_bg_alpha') : '.5';
+
+		$bg_ind    = $this->opt('ind_bg') ? pl_hashify($this->opt('ind_bg')) : '#000000';
+		$alpha_ind = $this->opt('ind_bg_alpha') ? $this->opt('ind_bg_alpha') : '.2';
+		$font      = $this->opt('ind_icon_color') ? pl_hashify($this->opt('ind_icon_color')) : '#ffffff';
+
+
+
+	?>
+		<div class="holder" style="background: rgba( <?php echo voyant_hex2rgb($color) ?>, <?php echo $alpha ?> );">
+			<div class="pl-content">
+				<div class="row" >
+					<div class="span3">
+						<div class="holder">
+		                    <a href="<?php echo get_site_url(); ?>" class="main_logo">
+		                        <img src="<?php echo $this->opt('voyant_logo') ?>" alt="" data-sync="voyant_logo">
+		                    </a>
+						</div>
+					</div>
+					<div class="span9">
+						<div class="voyant-nav">
+							<?php
+	                            if ( $this->opt( 'voyant_main_menu' ) ) {
+	                                wp_nav_menu(
+	                                    array(
+	                                        'menu_class'  => 'voyant-menu',
+	                                        'container' => 'div',
+	                                        'container_class' => 'voyant-menu-holder',
+	                                        'menu' => $this->opt('voyant_main_menu')
+	                                    )
+	                                );
+	                            }
+	                        ?>
+                    	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php
+	}
+
 	function section_opts() {
 
 		$opts = array();
+
+		$opts[] = array(
+            'type'  => 'select_menu',
+            'title' => 'Main Menu',
+            'key'   => 'voyant_main_menu',
+            'label' => __('Select the main menu', 'voyant')
+        );
 
 		$opts[] = array(
 			'type'  => 'image_upload',
@@ -89,43 +155,6 @@ class TmVoyantMenu extends PageLinesSection {
 		);
 
 		return $opts;
-	}
-
-	function section_template() {
-		$color     = $this->opt('menu_bg') ? pl_hashify($this->opt('menu_bg')) : '#000000';
-		$alpha     = $this->opt('menu_bg_alpha') ? $this->opt('menu_bg_alpha') : '.5';
-
-		$bg_ind    = $this->opt('ind_bg') ? pl_hashify($this->opt('ind_bg')) : '#000000';
-		$alpha_ind = $this->opt('ind_bg_alpha') ? $this->opt('ind_bg_alpha') : '.2';
-		$font      = $this->opt('ind_icon_color') ? pl_hashify($this->opt('ind_icon_color')) : '#ffffff';
-
-
-
-	?>
-		<div class="holder" style="background: rgba( <?php echo voyant_hex2rgb($color) ?>, <?php echo $alpha ?> );">
-			<div class="pl-content">
-				<div class="row" >
-					<div class="span3">
-						<div class="holder">
-		                    <a href="<?php echo get_site_url(); ?>" class="main_logo">
-		                        <img src="<?php echo $this->opt('voyant_logo') ?>" alt="" data-sync="voyant_logo">
-		                    </a>
-						</div>
-					</div>
-					<div class="span1 offset8">
-						<div class="menu-indicator">
-							<a href="#">
-								<i class="icon icon-bars" style="
-									background: rgba( <?php echo voyant_hex2rgb($bg_ind) ?>, <?php echo $alpha_ind ?>);
-									color: <?php echo $font ?>;
-								"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php
 	}
 
 }

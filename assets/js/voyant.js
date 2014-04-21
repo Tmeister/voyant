@@ -5,12 +5,18 @@ jQuery(document).ready(function($) {
    var $fixed = $('#fixed-top');
    var $window = $(window);
    var menuVisible = false;
+   var $site = $('#site');
 
    $fixed.addClass('hide-menu');
 
    $window.on('scroll', function(event) {
 
-   		//console.log( $window.scrollTop() +' : '+)
+   		if( $window.height() + 150 >= $site.height() ){
+   			$fixed.removeClass('hide-menu');
+   			$fixed.addClass('show-menu');
+   			menuVisible = true;
+   			return;
+   		}
 
    		if( $window.scrollTop() > 150 && !menuVisible){
    			$fixed.removeClass('hide-menu');

@@ -44,9 +44,6 @@
 					$play.click(function(event) {
 						event.preventDefault();
 						if( !isPlaying ){
-							//REMOVE
-							//$video.pauseYTP();
-							//return;
 							$contents.fadeOut('0', function() {
 								$video.unmuteYTPVolume();
 								$hidden.show();
