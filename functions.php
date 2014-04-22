@@ -32,7 +32,13 @@ class Voyant{
 		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
 		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
 
+		add_shortcode('highlight', array($this, 'highlight') );
+
 		//$this->init();
+	}
+
+	function highlight($atts, $content=""){
+		return '<span class="highlight">'.$content.'</span>';
 	}
 
 	function voyant_scripts()

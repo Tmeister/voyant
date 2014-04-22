@@ -262,6 +262,9 @@ html{
 
 			.ibox-media{
 				max-width: 40%;
+				.pl-counter{
+					font-size: 60px !important;
+				}
 			}
 
 			.ibox-desc{
@@ -1048,6 +1051,7 @@ html{
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
         font-size: 14px;
+        letter-spacing: 1px;
         a{
             color:white;
             text-shadow: 0 0 0;
@@ -1055,6 +1059,108 @@ html{
     }
 }
 
+/*!
+* Team Member
+*/
+.section-team-voyant{
+	.holder{
+		border: 1px solid rgba(0,0,0,.1);
+		border-radius: 3px;
+		padding: 5px;
+		.member-data{
+			position: relative;
+			img{
+				border-radius: 3px;
+			}
+			.name{
+				background: rgba(0,0,0, .5);
+				border-radius: 3px;
+				bottom:30px;
+				color: white;
+				font-size: 25px;
+				font-weight: 600;
+				left: 10px;
+				padding:6px 12px 20px 6px;
+				position: absolute;
+			}
+			.position{
+				background: @pl-link;
+				border-radius: 3px;
+				bottom: 10px;
+				color:white;
+				font-weight: 400;
+				left: 20px;
+				padding: 3px 10px;
+				position: absolute;
+			}
+		}
+		.description{
+			margin: 10px 0;
+			padding: 0px 5px 10px 5px;
+			font-size: .9em;
+			position: relative;
+			border-bottom: 1px dotted rgba(0,0,0, .2);
+		}
+		.social{
+			padding: 5px 5px 10px 5px;
+			a{
+				border-radius: 25px;
+				background: @pl-link;
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				width: 30px;
+				.transition(all .2s);
+				i{
+					color:white;
+				}
+				&:hover{
+					background: darken(@pl-link, 10%);
+					.transition(all .2s);
+				}
+			}
+		}
+	}
+}
+
+/*!
+* StarBars
+*/
+.starbars{
+	li{
+		span{
+			border-radius: 0px !important;
+			height: 30px !important;
+		}
+
+		p{
+			font-size: 16px !important;
+		}
+
+		.bar-wrap{
+			border-radius: 0px !important;
+			margin-bottom: 25px !important;
+		}
+
+		strong{
+			top: -30px !important;
+		}
+	}
+}
+
+/*!
+* Accordions
+*/
+.accordion-heading{
+	background: @pl-link;
+	text-transform: uppercase;
+	border-radius: 5px;
+	a{
+		color:white;
+		font-weight: 600;
+	}
+}
 
 
 .pl-fixed-top{
