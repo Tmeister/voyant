@@ -72,6 +72,14 @@ html{
 	font-weight: 600;
 }
 
+.border-top{
+	border-top: 1px solid @pl-link;
+}
+
+.gray-text{
+	color: #9f9f9f;
+}
+
 /*!
 * Mega Title Section
 */
@@ -1152,12 +1160,16 @@ html{
 /*!
 * Accordions
 */
+.accordion-group{
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
 .accordion-heading{
-	background: @pl-link;
+	background: #f5f5f5;
 	text-transform: uppercase;
-	border-radius: 5px;
 	a{
-		color:white;
+		color:@pl-link;
 		font-weight: 600;
 	}
 }
@@ -1178,6 +1190,17 @@ html{
 	}
 }
 
+/*!
+* Contact Form 7
+*/
+
+.wpcf7{
+	input[type="text"],
+	input[type="email"],
+	input[type="password"]{
+		width: 100%;
+	}
+}
 
 //Loader Animations
 @-moz-keyframes bounce_loadingProgressG{
