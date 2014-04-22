@@ -10,3 +10,6 @@
 [submodule "sections/maps"]
 	path = sections/maps
 	url = git@github.com:pagelines/maps.git
+[submodule "sections/quickslider"]
+	path = sections/quickslider
+	url = git@github.com:pagelines/quickslider.git
