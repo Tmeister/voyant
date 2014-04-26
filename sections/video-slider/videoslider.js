@@ -73,11 +73,11 @@
 
 				}
 
-				//$video.mb_YTPlayer();
-				//$video.on('YTPUnstarted', function(event) {
+				$video.mb_YTPlayer();
+				$video.on('YTPUnstarted', function(event) {
 					$preloader.remove();
 					$contents.fadeIn('slow');
-				//});
+				});
 
 				if( $slides.find('li').length > 1 ){
 					slider = $slides.bxSlider({

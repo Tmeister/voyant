@@ -13,7 +13,7 @@
 class TmVoyantTestimonials extends PageLinesSection {
 
 	function section_styles() {
-		wp_enqueue_script( 'tabpinnes', $this->base_url . '/unoslider.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'unoslider', $this->base_url . '/unoslider.js', array( 'jquery' ), '1.0', true );
 	}
 
 	function section_head() {

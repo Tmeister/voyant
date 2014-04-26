@@ -51,11 +51,10 @@ class TmVoyantMegaTitle extends PageLinesSection {
 	}
 
 	function section_template() {
-		$title       = ( $this->opt( 'mega_title' ) ) ? $this->opt( 'mega_title' ) : '';
+		$title       = ( $this->opt( 'mega_title' ) ) ? $this->opt( 'mega_title' ) : 'Lorem Ipsum';
 		$description = ( $this->opt( 'mega_description' ) ) ? $this->opt( 'mega_description' ) : '';
 		$shadow      = ( $this->opt( 'mega_shadow' ) ) ? $this->opt( 'mega_shadow' ) : '';
 		$align       = ( $this->opt( 'mega_align' ) ) ? $this->opt( 'mega_align' ) : 'align-left';
-		//var_dump($align);
 
 ?>
 		<div class="holder">

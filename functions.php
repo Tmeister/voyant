@@ -32,6 +32,8 @@ class Voyant{
 		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
 		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
 
+		add_image_size( 'blog_loop', '855', '320', true );
+
 		add_shortcode('highlight', array($this, 'highlight') );
 
 		//$this->init();

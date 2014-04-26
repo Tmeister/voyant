@@ -22,10 +22,10 @@ class TmVoyantPageTitle extends PageLinesSection {
 		<div class="holder">
 			<div class="pl-content">
 				<div class="row">
-					<div class="span8">
+					<div class="span12">
 						<h2><?php echo the_title(); ?></h2>
 					</div>
-					<div class="span4">
+					<div>
 						<?php
 							if ( function_exists('yoast_breadcrumb') ) {
 								yoast_breadcrumb('<div id="breadcrumbs">','</div>');

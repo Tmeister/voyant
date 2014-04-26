@@ -223,7 +223,7 @@ class TmVoyantVideoSlider extends PageLinesSection {
 			'opts'      => array(
 				array(
 					'key'		=> 'title',
-					'label'		=> __( 'Event Title', 'voyant' ),
+					'label'		=> __( 'Title', 'voyant' ),
 					'type'		=> 'textarea'
 				),
 				array(
