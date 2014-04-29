@@ -96,129 +96,208 @@ class TmVoyantWpBlogLoop extends PageLinesSection {
 		$count = 0;
 		global $plpg;
 
-		if( have_posts() )
-			while ( have_posts() ) : the_post();
-
-			$count++;
-
-			$format = get_post_format();
-
-			$linkbox = ($format == 'quote' || $format == 'link') ? true : false;
-
-			$class = array();
-
-			$postlist = ( $plpg->is_blog_page_type() ) ? true : false;
-
-			$class[ ] = ( is_archive() || is_search() || is_home() ) ? 'multi-post' : '';
-
-			$class[ ] = ( ! $postlist ) ? 'standard-page' : '';
-
-			$class[ ] = ( is_single() ) ? 'single-post' : '';
-
-			$class[ ] = 'pl-border';
-
-			$class[ ] = 'pl-new-loop';
-
-			$gallery_format = get_post_meta( get_the_ID(), '_pagelines_gallery_slider', true);
-
-			$class[ ] = ( ! empty( $gallery_format ) ) ? 'use-flex-gallery' : '';
-
-			$thumb_size = ( pl_setting('pl_loop_thumb_size' ) ) ? pl_setting('pl_loop_thumb_size' ) : 'landscape-thumb';
-
-			$classes = apply_filters( 'pagelines_get_article_post_classes', join( " ", $class) );
-			?>
-			<article id="post-<?php the_ID(); ?>" <?php post_class( $classes ); ?>>
-
-				<?php
-					$content = trim( get_the_content('Read more'));
-					if( ! is_singular() && ! $this->opt( 'post_media_hide' ) )
-					{
-						$this->do_media_finder($format, $content, $thumb_size);
-					}
+		if( have_posts() ){
+			while ( have_posts() ){
+				the_post();
+				$count++;
+				$format         = get_post_format();
+				$linkbox        = ($format == 'quote' || $format == 'link') ? true : false;
+				$class          = array();
+				$postlist       = ( $plpg->is_blog_page_type() ) ? true : false;
+				$class[ ]       = ( is_archive() || is_search() || is_home() ) ? 'multi-post' : '';
+				$class[ ]       = ( ! $postlist ) ? 'standard-page' : '';
+				$class[ ]       = ( is_single() ) ? 'single-post' : '';
+				$class[ ]       = 'pl-border';
+				$class[ ]       = 'pl-new-loop';
+				$gallery_format = get_post_meta( get_the_ID(), '_pagelines_gallery_slider', true);
+				$class[ ]       = ( ! empty( $gallery_format ) ) ? 'use-flex-gallery' : '';
+				$thumb_size     = ( pl_setting('pl_loop_thumb_size' ) ) ? pl_setting('pl_loop_thumb_size' ) : 'landscape-thumb';
+				$classes        = apply_filters( 'pagelines_get_article_post_classes', join( " ", $class) );
 				?>
 
-				<div class="entry-content">
+				<article id="post-<?php the_ID(); ?>" <?php post_class( $classes ); ?>>
 					<?php
-
-					if( is_single() || is_page() ){
-
-
-						if( !$format ){
-							printf( '<div class="metamedia">%s</div>', pagelines_media( array( 'thumb-size' => $thumb_size ) ) );
+						$content = trim( get_the_content('Read more'));
+						if( ! $this->opt( 'post_media_hide' ) )
+						{
+							$this->do_media_finder($format, $content, $thumb_size);
 						}
+					?>
+					<div class="entry-content">
+						<?php
 
-						the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pagelines' ) );
+							$day = get_the_date('j');
+							$month = get_the_date('M');
 
-						echo "<div class='entry-footer row'>";
+							if( is_single() || is_page() ){
 
-						$meta = ( pl_setting('metabar_standard') ) ? pl_setting('metabar_standard') : 'Posted [post_date] &middot; [post_comments] [post_edit]';
-						echo "<hr>";
-						if( $meta && ! is_page() && get_post_type() != 'page' )
-							printf( '<div class="metabar span10"><div class="holder"> %s </div></div>', do_shortcode( $meta ) );
-						echo "</div>";
+								if( $format == 'quote' || $format == 'link'){
+								}else{
+									echo "<hr>";
+									echo "<div class='entry-data'>";
+									echo "<div class='entry-date'>";
+									echo "<div class='day'>".$day."</div>";
+									echo "<div class='month'>".$month."</div>";
+									echo "</div>";
+									echo "<div class='entry-content'>";
 
-						wp_link_pages( array(
-							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'pagelines' ) . '</span>',
-							'after'       => '</div>',
-							'link_before' => '<span>',
-							'link_after'  => '</span>',
-						) );
+										echo apply_filters('the_content', ( $this->get_final_content($format, true) ) );
 
-					} elseif( ! $linkbox ) {
-
-						$day = get_the_date('j');
-						$month = get_the_date('M');
-						echo "<div class='entry-data'>";
-							echo "<div class='entry-date'>";
-							echo "<div class='day'>".$day."</div>";
-							echo "<div class='month'>".$month."</div>";
-							echo "</div>";
-							echo "<div class='entry-content'>";
-								if( ! $linkbox ){
-									echo "<div class='entry-header'>";
-									if ( is_single() ) :
-										the_title( '<h2 class="entry-title">', '</h2>' );
-									elseif( ! is_page() ) :
-										the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-									endif;
+									echo "</div>";
 									echo "</div>";
 								}
-								//TODO
+								echo "<div class='entry-footer row'>";
 
-								the_excerpt();
+								$meta = ( pl_setting('metabar_standard') ) ? pl_setting('metabar_standard') : 'Posted [post_date] &middot; [post_comments] [post_edit]';
+								echo "<hr>";
+								if( $meta && ! is_page() && get_post_type() != 'page' )
+									printf( '<div class="metabar span10"><div class="holder"> %s </div></div>', do_shortcode( $meta ) );
+								echo "</div>";
+
+								wp_link_pages( array(
+									'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'pagelines' ) . '</span>',
+									'after'       => '</div>',
+									'link_before' => '<span>',
+									'link_after'  => '</span>',
+								) );
+
+							} elseif( ! $linkbox ) {
+
+								echo "<div class='entry-data'>";
+									echo "<div class='entry-date'>";
+									echo "<div class='day'>".$day."</div>";
+									echo "<div class='month'>".$month."</div>";
+									echo "</div>";
+									echo "<div class='entry-content'>";
+										if( ! $linkbox ){
+											echo "<div class='entry-header'>";
+											if ( is_single() ) :
+												the_title( '<h2 class="entry-title">', '</h2>' );
+											elseif( ! is_page() ) :
+												the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+											endif;
+											echo "</div>";
+										}
+
+										echo $this->get_final_content($format);
 
 
-							echo "</div>";
-							echo "<div class='clear'></div>";
-						echo "</div>";
 
-						echo "<div class='entry-footer row'>";
 
-						$meta = ( pl_setting('metabar_standard') ) ? pl_setting('metabar_standard') : 'Posted [post_date] &middot; [post_comments] [post_edit]';
+									echo "</div>";
+									echo "<div class='clear'></div>";
+								echo "</div>";
+								echo "<hr>";
+								echo "<div class='entry-footer row'>";
 
-						if( $meta && ! is_page() && get_post_type() != 'page' )
-							printf( '<div class="metabar span10"><div class="holder"> %s </div></div>', do_shortcode( $meta ) );
+									$meta = ( pl_setting('metabar_standard') ) ? pl_setting('metabar_standard') : 'Posted [post_date] &middot; [post_comments] [post_edit]';
 
-						printf(
-							'<div class="continue_reading_link span2"><a class="btn" href="%s" title="%s %s">%s</a></div>',
-							get_permalink(),
-							__("Read More", 'pagelines'),
-							the_title_attribute(array('echo'=> 0)),
-							__('Read More <i class="icon icon-angle-right"></i>', 'pagelines')
-						);
-						echo "</div>";
-					}
+									if( $meta && ! is_page() && get_post_type() != 'page' ){
+										printf( '<div class="metabar span10"><div class="holder"> %s </div></div>', do_shortcode( $meta ) );
+									}
 
-					?>
-				</div><!-- .entry-content -->
-				<hr>
-			</article><!-- #post-## -->
+									printf(
+										'<div class="continue_reading_link span2"><a class="btn" href="%s" title="%s %s">%s</a></div>',
+										get_permalink(),
+										__("Read More", 'pagelines'),
+										the_title_attribute(array('echo'=> 0)),
+										__('Read More <i class="icon icon-angle-right"></i>', 'pagelines')
+									);
+								echo "</div>";
+							}
+						?>
+					</div><!-- .entry-content -->
+					<hr>
+				</article><!-- #post-## -->
+				<?php
+			} #END WHILE;
+
+			#Pagination
+			global $wp_query;
+			if ($wp_query->max_num_pages > 1){
+				if ( get_query_var( 'paged' ) ){
+					$paged = get_query_var('paged');
+				} else if ( get_query_var( 'page' ) ){
+					$paged = get_query_var( 'page' );
+				} else{
+					$paged = 1;
+				}
+			?>
+				<div class="pagination">
+					<div class="pag-holder">
+						<?php
+							if ( is_single() ) {
+								echo paginate_links( array(
+									'base'    => get_permalink() . '%#%',
+									'format'  => '?paged=%#%',
+									'current' => max( 1, $paged ),
+									'total'   => $wp_query->max_num_pages
+								) );
+							} else {
+								$big = 999999;
+								echo paginate_links( array(
+									'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+									'format'  => '?paged=%#%',
+									'current' => max( 1, $paged ),
+									'total'   => $wp_query->max_num_pages,
+									'prev_text' => __('«', 'voyant'),
+									'next_text' => __('»', 'voyant')
+								) );
+							}
+						?>
+					</div>
+				</div>
 			<?php
+			}
 
+		}else{
+			$this->posts_404();
+		}
+	}
 
-		endwhile;
-	else
-		$this->posts_404();
+	function get_final_content($format, $full = false){
+		$content = ( $full ) ? get_the_content('Continue reading <span class="meta-nav">&rarr;</span>', 'pagelines' ) : trim(get_the_excerpt());
+		switch ($format) {
+
+			case 'audio':
+				if( preg_match('#^https?://w.soundcloud.com\S+#', $content, $match ) ){
+					return substr($content, strlen($match[0]));
+				}
+
+				if(preg_match('#^http?://\S+#', $content, $match) && !$soundcloud){
+					return substr($content, strlen($match[0]));
+				}else if(preg_match('#^\[audio\s.+\[/audio\]#', $content, $match) && !$soundcloud){
+					return substr($content, strlen($match[0]));
+				}
+
+				return $content;
+				break;
+
+			case 'video':
+				if( preg_match('#^//player.vimeo.com/\S+#', $content, $match ) ){
+					return substr($content, strlen($match[0]));
+				}
+
+				if( preg_match('#^//www.youtube.com/\S+#', $content, $match ) && !$vimeo ){
+					return substr($content, strlen($match[0]));
+				}
+
+				if(preg_match('#^http?://\S+#', $content, $match)){
+					return substr($content, strlen($match[0]));
+				}else if(preg_match('#^\[video\s.+\[/video\]#', $content, $match)){
+					return substr($content, strlen($match[0]));
+				}
+				return $content;
+				break;
+
+			case 'quote':
+			case 'link':
+				return '';
+
+			default:
+				return $content;
+				break;
+		}
 	}
 
 	function do_media_finder($format, $content, $thumb_size){
@@ -281,10 +360,6 @@ class TmVoyantWpBlogLoop extends PageLinesSection {
 				break;
 		}
 	}
-
-
-
-
 
 	function posts_404(){
 
