@@ -30,17 +30,28 @@ class Voyant{
 		$this->dir = sprintf('/%s', PL_CHILD_DIR);
 
 		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
+		add_filter( 'pl_list_comments', array( &$this, 'comments_avatar' ) );
+
 		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
 
 		add_image_size( 'blog_loop', '855', '320', true );
 
 		add_shortcode('highlight', array($this, 'highlight') );
+		add_shortcode('white', array($this, 'white') );
 
 		//$this->init();
 	}
 
+	function comments_avatar($args){
+		return array( 'type'=> 'comment', 'avatar_size' => '80' );
+	}
+
 	function highlight($atts, $content=""){
 		return '<span class="highlight">'.$content.'</span>';
+	}
+
+	function white($atts, $content=""){
+		return '<span class="white">'.$content.'</span>';
 	}
 
 	function voyant_scripts()

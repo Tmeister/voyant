@@ -146,20 +146,7 @@ class TmVoyantWpBlogLoop extends PageLinesSection {
 									echo "</div>";
 									echo "</div>";
 								}
-								echo "<div class='entry-footer row'>";
 
-								$meta = ( pl_setting('metabar_standard') ) ? pl_setting('metabar_standard') : 'Posted [post_date] &middot; [post_comments] [post_edit]';
-								echo "<hr>";
-								if( $meta && ! is_page() && get_post_type() != 'page' )
-									printf( '<div class="metabar span10"><div class="holder"> %s </div></div>', do_shortcode( $meta ) );
-								echo "</div>";
-
-								wp_link_pages( array(
-									'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'pagelines' ) . '</span>',
-									'after'       => '</div>',
-									'link_before' => '<span>',
-									'link_after'  => '</span>',
-								) );
 
 							} elseif( ! $linkbox ) {
 
