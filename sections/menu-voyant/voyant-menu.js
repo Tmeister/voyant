@@ -20,6 +20,8 @@
 				var $menu = $el.find('.voyant-menu');
     			var lastItems = $menu.find('>:nth-last-child(-n+10)');
     			var lastItem =  $menu.find('>:nth-last-child(-n+1)');
+    			var $flag = false
+				var $current;
 
     			/* Align the sub-menus */
 
@@ -51,39 +53,87 @@
 			        clearInterval(wait)
 			    }, 500);
 
-				/*$clone = $source.clone(true, true).prependTo( "body" );
-				$source.remove();
-				$close = $clone.find('.close-menu');
+				/* Mobile Menu*/
+				$nav = $('.voyant-nav');
+				$parent = $nav.parent();
+				$mobile = $nav.clone(true, true);
+				$mobile.find('.voyant-menu').removeClass('voyant-menu').addClass('voyant-mobile-menu');
+				$mobile.removeClass('voyant-nav').addClass('voyant-mobile-nav');
+				$mobile.appendTo('.section-menu-voyant .span9');
 
-				$el.on('click', function(event) {
-					event.preventDefault();
-					if( !$clone.hasClass('menu-open') ){
-						$clone.addClass('menu-open');
-						$site.addClass('superscale');
-						$('body').addClass('dark-bg')
+				$holder = $mobile.find('.voyant-menu-holder');
+				$holder.prepend('<a href="#" class="mobile-trigger"><i class="icon icon-align-justify"></i></a>');
+
+				$menu = $mobile.find('.voyant-mobile-menu');
+				$menu.slideUp();
+
+				$('.sub-menu', $menu).slideUp();
+
+				var count = 1;
+				jQuery('> li', $menu).each(function(index, el) {
+					$el = jQuery(el);
+					if( $el.find('.sub-menu').length > 0 ){
+						$el.addClass('has-submenu');
+						$el.attr('flag', 'a' + count++);
+						$el.click(function(event) {
+							$this = jQuery(this);
+							if( $flag !=  $this.attr('flag')){
+								if( $flag != false ){
+									$current.find('.sub-menu').slideUp('fast');
+								}
+								$flag = $this.attr('flag');
+								$current = $this;
+								$this.find('.sub-menu').slideDown('fast');
+								event.preventDefault();
+							}
+						});
 					}
 				});
 
-				$close.on('click', function(event) {
-					event.preventDefault();
-					$clone.removeClass('menu-open');
-					$site.removeClass('superscale');
-					$('body').removeClass('dark-bg')
+				$('.mobile-trigger').toggle(function() {
+					$menu.slideDown('fast');
+				}, function() {
+					$menu.slideUp('fast');
 				});
 
-				$clone.find('ul > li:has(ul)').on('click', function(event) {
-					var item = $( this );
-					console.log( item )
-			        if( item[ 0 ] != currentMobileItem[ 0 ] )
-			        {
-			            if( currentMobileItem ){
-			                //currentMobileItem.find('>ul').slideUp('slow')
-			            }
-			            event.preventDefault();
-			            currentMobileItem = item;
-			            $(this).find('>ul').slideDown('slow');
-			        }
-				});*/
+
+				/* Show or Hide according to the scroll position*/
+				var $fixed = $('#fixed-top');
+				var $window = $(window);
+				var menuVisible = false;
+				var $site = $('#site');
+
+				$fixed.addClass('hide-menu');
+
+				$window.on('scroll', function(event) {
+					if( $window.width() <= 768){
+						$fixed.removeClass('hide-menu');
+						$fixed.addClass('show-menu');
+						menuVisible = true;
+						return;
+					}
+
+					if( $window.height() + 150 >= $site.height() ){
+						$fixed.removeClass('hide-menu');
+						$fixed.addClass('show-menu');
+						menuVisible = true;
+						return;
+					}
+
+					if( $window.scrollTop() > 150 && !menuVisible){
+						$fixed.removeClass('hide-menu');
+						$fixed.addClass('show-menu');
+						menuVisible = true;
+					}else if( menuVisible = true &&  $window.scrollTop() < 150){
+						$fixed.addClass('hide-menu');
+						$fixed.removeClass('show-menu');
+						menuVisible = false;
+					}
+				});
+
+				$window.trigger('scroll');
+
+
 			}
 		};
 

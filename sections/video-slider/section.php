@@ -25,10 +25,13 @@ class TmVoyantVideoSlider extends PageLinesSection {
 	}
 
 	function section_head() {
+		$image_source      = ( $this->opt('image_source') ) ? $this->opt('image_source') : '';
 	?>
 		<script>
 			jQuery(document).ready(function($) {
-				jQuery('<?php echo "#video-slider".$this->meta["clone"]?>').videoslider();
+				jQuery('<?php echo "#video-slider".$this->meta["clone"]?>').videoslider({
+					altImage: '<?php echo $image_source; ?>',
+				});
 			});
 		</script>
 	<?php
@@ -45,6 +48,7 @@ class TmVoyantVideoSlider extends PageLinesSection {
 		$startat     = ( $this->opt('video_start') ) ? $this->opt('video_start') : '0';
 		$endsat      = ( $this->opt('video_end') ) ? $this->opt('video_end') : '0';
 		$exist_text  = ( $this->opt('video_exit_text') ) ? $this->opt('video_exit_text') : 'Click to exit fullscreen video';
+
 
 
 		$classHolder = ( $fullHeight ) ? 'full-height' : '';
@@ -124,6 +128,14 @@ class TmVoyantVideoSlider extends PageLinesSection {
 			'label' => __( 'Video URL (YouTube)', 'voyant' ),
 			'ref' 	=> __( 'This section use a YouTube video as a Background, so is mandatory to use a youtube URL.', 'voyant' ),
 			'type'  => 'text'
+		);
+
+		$opts[] = array(
+			'key'   => 'image_source',
+			'title' => __( 'Alternative background image for mobiles', 'voyant' ),
+			'label' => __( 'Alternative image', 'voyant' ),
+			'ref' 	=> __( 'Please upload a image to use as fallback for mobile devices, mobile devides do not handle video as background.', 'voyant' ),
+			'type'  => 'image_upload'
 		);
 
 		$opts[] = array(

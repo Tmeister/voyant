@@ -977,7 +977,6 @@ html{
 		float: right;
 	}
 
-
     ul.voyant-menu{
         display: block;
         margin-right: 0px;
@@ -1120,6 +1119,74 @@ html{
                 }
             }
         }
+	}
+
+	.voyant-mobile-nav{
+		display: none;
+	}
+
+	ul.voyant-mobile-menu{
+		li{
+			a{
+				padding:10px;
+				background: rgba(0,0,0,.75);
+				border: 1px solid rgba(0,0,0,.9);
+				border-top:0 none;
+				display: block;
+				color: white;
+				&:hover,
+				&:focus{
+					background: rgba(0,0,0,.85);
+				}
+			}
+			&:first-child{
+				border-top: 1px solid rgba(0,0,0,.9);
+			}
+			&.has-submenu{
+				> a{
+					position: relative;
+					&:after{
+						font-family: 'PagelinesFont';
+						position: absolute;
+						left: 0px;
+						content: "\F0DD";
+						width: 20px;
+						height: 20px;
+						background: rgba(0,0,0,.5);
+						border: 1px solid rgba(0,0,0,.5);
+						left: 90%;
+						line-height: 16px;
+						text-align: center;
+					}
+				}
+				ul{
+					li{
+						a{
+							background-color: rgba(0,0,0,.9);
+							padding-left: 30px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.mobile-trigger{
+		background: rgba(0, 0, 0, 0.75);
+		border-radius: 3px;
+		width: 40px !important;
+		height: 40px !important;
+		display: block;
+		position: relative;
+		margin-bottom: 10px !important;
+		left: 90%;
+		top: 10px;
+		i{
+			color:white;
+			font-size: 20px;
+			text-align: center;
+			line-height: 43px;
+			width: 100%;
+		}
 	}
 
 }
@@ -1651,6 +1718,85 @@ input[type="submit"], .submit, input[type="button"], .button, input[type="reset"
 		#page-main{
 			overflow: visible;
 		}
+	}
+}
+
+.mobile-menu{
+	.section-menu-voyant {
+		.voyant-nav{
+			display: none;
+		}
+		.voyant-mobile-nav{
+			display: block;
+		}
+		.holder{
+			background: none !important;
+			.span3{
+				display: none;
+			}
+			.span9{
+				width: 100% !important;
+			}
+		}
+
+		.voyant-menu-holder{
+			float: initial;
+			width: 90%;
+			margin-left: 5%;
+		}
+	}
+	.pl-fixed-top{
+		box-shadow: 0 0 0 black !important;
+	}
+
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media screen and (min-width : 320px) and (max-width : 768px) {
+	.mobile-menu();
+	.mobile-trigger{
+		left:250px !important;
+	}
+}
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width : 321px) and (orientation: landscape){
+	.mobile-trigger{
+		left:90% !important;
+	}
+}
+
+/* iPads */
+@media screen and (min-width : 768px) and (max-width : 1024px)  {
+	.mobile-menu();
+	.mobile-trigger{
+		left:94% !important;
+	}
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+	.section-mega-title{
+		h1{
+			font-size: 60px !important;
+		}
+	}
+	.section-timeline{
+		.timeline.align-left{
+			li {
+				.label-box {
+    				margin: 0 20% 2em 0;
+    			}
+    		}
+    	}
+    	.timeline.align-right{
+			li {
+				.label-box {
+    				margin: 0 0 2em 20%;
+    			}
+    		}
+    	}
 	}
 }
 

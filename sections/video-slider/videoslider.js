@@ -2,8 +2,14 @@
 ;(function ( $, window, document, undefined ) {
 		var pluginName = "videoslider",
 			defaults = {
-				autoplay: true
+				altImage: ''
 			};
+
+		var detector = {};
+
+		detector.isMobileDevice = function() {
+			return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+		};
 
 		function Plugin ( element, options ) {
 			this.element = element;
@@ -39,6 +45,33 @@
 						fullHeight.css({height: $win.height()});
 					});
 				}
+
+				if(  detector.isMobileDevice() ){
+					fullHeight.css(
+						{
+							'background-image': 'url('+self.settings.altImage+')',
+							'background-size': 'cover'
+						}
+					);
+
+					$('.controls', $el).remove();
+
+					if( $slides.find('li').length > 1 ){
+						slider = $slides.bxSlider({
+							mode:'fade',
+							adaptiveHeight: true,
+							pager:false,
+							auto:true,
+							controls:false,
+							pause:8000
+						});
+					}
+
+					$preloader.remove();
+					$contents.fadeIn('slow');
+					return;
+				}
+
 
 				if( $play.length > 0 ){
 					$play.click(function(event) {
