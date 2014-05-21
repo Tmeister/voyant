@@ -3,7 +3,7 @@
 	Section: Testimonials Voyant
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Testimonials
+	Description: Testimonial section for Voyant.
 	Class Name: TmVoyantTestimonials
 	Workswith: templates, main, morefoot, content
 	Cloning: true

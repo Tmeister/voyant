@@ -3,7 +3,7 @@
 	Section: Timeline
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Timeline
+	Description: The Timeline section is useful to show events or small information blocks in a progressive view with 4 options: Title, Description, Date (Optional), Icon. This section can be aligned to de right, left or in a odd/even view.
 	Class Name: TmVoyantTimeline
 	Workswith: templates, main, header, morefoot, content
 	Cloning: true

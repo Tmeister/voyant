@@ -3,7 +3,7 @@
 	Section: WP Loop Voyant
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Base
+	Description: Custom Loop Blog for Voyant, this loop support all the WordPress Post formats.
 	Class Name: TmVoyantWpBlogLoop
 	Workswith: templates, main, content
 	Cloning: true

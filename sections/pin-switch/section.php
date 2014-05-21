@@ -3,7 +3,7 @@
 	Section: Pin Switch
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Pin Switch
+	Description: The Pin Switch section allows you to show small information blocks using a elegant "bullet" navigation.
 	Class Name: TmVoyantPinSwitch
 	Workswith: templates, main, header, morefoot, content
 	Cloning: true

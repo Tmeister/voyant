@@ -3,7 +3,7 @@
 	Section: Video Slider
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Video Slider
+	Description: The Video Slider section allows you to show a introduction video as a background and slides to show important information or welcome messages. The Video Slider only support Youtube videos and use an image as fallback for mobile devices.
 	Class Name: TmVoyantVideoSlider
 	Workswith: templates, main, content
 	Cloning: false

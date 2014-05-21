@@ -3,7 +3,7 @@
 	Section: Image Slider
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Image Slider
+	Description: Sometimes a Video as background can be not the first choice, if this is the case, you can get the same goodies that  the Video Slider offers but in this section you use an image for a background.
 	Class Name: TmVoyantImageSlider
 	Workswith: templates, main, content
 	Cloning: false

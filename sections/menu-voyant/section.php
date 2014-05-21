@@ -3,7 +3,7 @@
 	Section: Menu Voyant
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Menu Voyant
+	Description: Fixed Menu for Voyant theme.
 	Class Name: TmVoyantMenu
 	Workswith: templates, main, content
 	Cloning: true

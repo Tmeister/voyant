@@ -3,7 +3,7 @@
 	Section: Mega Title
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Titles
+	Description: The Meta Title section allows you to place beautiful titles for your content, using text as a faint shadow, highlighting and complementing the main title. The Main Title section can be used in full-width and content-width mode and can be aligned to the left or to the right.
 	Class Name: TmVoyantMegaTitle
 	Workswith: templates, main, content
 	Cloning: true

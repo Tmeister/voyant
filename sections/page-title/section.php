@@ -3,7 +3,7 @@
 	Section: Page Title
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: Page Title
+	Description: The Page Title section allows you to show the pages and posts title in a beautiful way, setting a image background to highlight the title and if you use the "WordPress SEO" plugin by Yoast a breadcrumbs are added.
 	Class Name: TmVoyantPageTitle
 	Workswith: templates, main, content
 	Cloning: true

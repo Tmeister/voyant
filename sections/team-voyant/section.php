@@ -3,7 +3,7 @@
 	Section: Team Member
 	Author: Enrique Chavez
 	Author URI: http://enriquechavez.co
-	Description: TEam Member Section
+	Description: The Team Member section allows you to show details for a company member or work team member. Yo can configurate the avatar, name, position, mini-bio, and up to 8 social media links. This section can be used to create a detailed "About Us", "Meet the team".
 	Class Name: TmVoyantTeam
 	Workswith: templates, main, content
 	Cloning: true
