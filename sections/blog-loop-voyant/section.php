@@ -343,7 +343,10 @@ class TmVoyantWpBlogLoop extends PageLinesSection {
 
 			default:
 				$args = array( 'thumb-size' => $thumb_size );
-				printf( '<div class="metamedia">%s</div>', pagelines_media( $args ) );
+				$data = pagelines_media( $args );
+				if($data){
+					printf( '<div class="metamedia">%s</div>', pagelines_media( $args ) );
+				}
 				break;
 		}
 	}
