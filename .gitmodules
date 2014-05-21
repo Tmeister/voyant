@@ -13,3 +13,9 @@
 [submodule "sections/quickslider"]
 	path = sections/quickslider
 	url = git@github.com:pagelines/quickslider.git
+[submodule "sections/docker"]
+	path = sections/docker
+	url = https://github.com/pagelines/docker
+[submodule "sections/revslider"]
+	path = sections/revslider
+	url = git@github.com:pagelines/revslider.git
