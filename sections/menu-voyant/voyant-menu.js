@@ -62,7 +62,7 @@
 				$mobile.appendTo('.section-menu-voyant .span9');
 
 				$holder = $mobile.find('.voyant-menu-holder');
-				$holder.prepend('<a href="#" class="mobile-trigger"><i class="icon icon-align-justify"></i></a>');
+				$holder.prepend('<a href="#" class="mobile-trigger"><i class="icon icon-align-justify"></i></a><div class="clear"></div>');
 
 				$menu = $mobile.find('.voyant-mobile-menu');
 				$menu.slideUp();

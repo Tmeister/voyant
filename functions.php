@@ -5,18 +5,21 @@
 if( ! defined( 'DMS_CORE' ) )
 	define( 'DMS_CORE', true );
 
+
+add_action( 'pagelines_hook_init', 'add_installer', 4 );
+function add_installer(){
+	require_once( 'installer.php' );
+}
+
 require_once( 'dms/functions.php' );
 
 // Lets suggest a few plugins..
-/*
+
 
 dms_suggest_plugin( 'Contact Form 7', 'contact-form-7', 'Contact Form 7 can manage multiple contact forms, plus you can customize the form and the mail contents flexibly with simple markup.<br />The form supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering and so on.' );
 
 dms_suggest_plugin( 'WordPress SEO', 'wordpress-seo', 'Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the WordPress SEO plugin by Yoast.' );
-
-dms_suggest_plugin( 'WooCommerce - excelling eCommerce', 'woocommerce', 'WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.' );
-
-*/
+dms_suggest_plugin( 'Sidebar Manager Light', 'sidebar-manager-light', 'Create custom sidebars (widget areas) and replace any existing sidebar so you can display relevant content on different pages.' );
 
 class Voyant{
 
@@ -29,8 +32,11 @@ class Voyant{
 		$this->url = sprintf('%s', PL_CHILD_URL);
 		$this->dir = sprintf('/%s', PL_CHILD_DIR);
 
+
+
 		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
 		add_filter( 'pl_list_comments', array( &$this, 'comments_avatar' ) );
+		add_filter( 'pl_toolbar_config', array( $this, 'toolbar'), 99);
 
 		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
 
@@ -39,8 +45,75 @@ class Voyant{
 		add_shortcode('highlight', array($this, 'highlight') );
 		add_shortcode('white', array($this, 'white') );
 
+
+
 		//$this->init();
 	}
+
+	function toolbar( $toolbar ){
+
+		$toolbar['pagelines-help'] = array(
+			'name'	=> __( '', 'pagelines' ),
+			'icon'	=> 'icon-question-circle',
+			'vtype'	=> 'btn',
+			'pos'	=> 180,
+			'panel'	=> array(
+
+				'heading2'	=> __( "Support &amp; Help", 'pagelines' ),
+				'resources'	=> array(
+						'name'	=> __( 'Resources', 'pagelines' ),
+						'call'	=> array( $this, 'help_resources'),
+						'icon'	=> 'icon-thumbs-up',
+					),
+			)
+
+		);
+
+		return $toolbar;
+	}
+
+	function help_resources(){
+		$tour = pl_add_query_arg(array('pl-view-tour' => 1));
+		?>
+		<div class="row">
+			<div class="span4 offset4">
+				<a class="big-icon-button" href="http://enriquechavez.co/documentation/voyant">
+					<div class="the-icon"><i class="icon icon-files-o"></i></div>
+					<div class="the-text">Voyant Documentation <i class="icon icon-angle-right"></i></div>
+				</a>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="span3">
+				<a class="big-icon-button" href="<?php echo $tour;?>">
+				<div class="the-icon"><i class="icon icon-magic"></i></div>
+				<div class="the-text">View Interactive<br>Tour <i class="icon icon-angle-right"></i>
+</div></a>
+			</div>
+			<div class="span3">
+				<a class="big-icon-button" href="http://www.pagelines.com/user-guide/" target="_blank">
+				<div class="the-icon"><i class="icon icon-book"></i></div>
+				<div class="the-text">PageLines User<br>Guide <i class="icon icon-angle-right"></i>
+</div></a>
+			</div>
+			<div class="span3">
+				<a class="big-icon-button" href="http://forum.pagelines.com/" target="_blank">
+				<div class="the-icon"><i class="icon icon-comments"></i></div>
+				<div class="the-text">PageLines Support Forums <i class="icon icon-angle-right"></i>
+</div></a>
+			</div>
+			<div class="span3">
+				<a class="big-icon-button" href="http://docs.pagelines.com/" target="_blank">
+				<div class="the-icon"><i class="icon icon-files-o"></i></div>
+				<div class="the-text">PageLines<br>Documentation <i class="icon icon-angle-right"></i>
+</div></a>
+			</div>
+		</div>
+		<?php
+	}
+
 
 	function comments_avatar($args){
 		return array( 'type'=> 'comment', 'avatar_size' => '80' );
