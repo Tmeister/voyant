@@ -32,9 +32,11 @@ class TmVoyantMenu extends PageLinesSection {
 		$color     = $this->opt('menu_bg') ? pl_hashify($this->opt('menu_bg')) : '#000000';
 		$alpha     = $this->opt('menu_bg_alpha') ? $this->opt('menu_bg_alpha') : '.5';
 
+		/*
 		$bg_ind    = $this->opt('ind_bg') ? pl_hashify($this->opt('ind_bg')) : '#000000';
 		$alpha_ind = $this->opt('ind_bg_alpha') ? $this->opt('ind_bg_alpha') : '.2';
 		$font      = $this->opt('ind_icon_color') ? pl_hashify($this->opt('ind_icon_color')) : '#ffffff';
+		*/
 
 
 
@@ -119,6 +121,7 @@ class TmVoyantMenu extends PageLinesSection {
 			)
 		);
 
+		/*
 		$opts[] = array(
 			'type' => 'multi',
 			'key' => 'multi_menu_indicator',
@@ -153,6 +156,7 @@ class TmVoyantMenu extends PageLinesSection {
 				)
 			)
 		);
+		*/
 
 		return $opts;
 	}
