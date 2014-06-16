@@ -1,10 +1,6 @@
-## Voyant Theme
+## Voyant Theme Child Theme
 
-Voyant was created using the new DMS 2.0 structure that removes the parent-child theme dependency, known as "core themes".
-
-This means that you only need to install the Voyant Theme and forget about the post conflicts when a new DMS update be released.
-
-Now the update of DMS Core in a "core theme" is developer's responsibility. And a new "core theme" update only will be released when the developer have been tested the latest DMS update.
+**This assume that you have already installed PageLines DMS.**
 
 ### Get the Zip File
 
@@ -84,17 +80,235 @@ This section have 4 options:
 
 The **Video Slider** section allows you to show a introduction video as a background and slides to show important information or welcome messages. **The Video Slider only support Youtube videos and use an image as fallback for mobile devices.**
 
+**Options:**
+
+**Video URL ( YouTube )** 
+
+This section use a YouTube video as a Background, so is mandatory to use a youtube URL you can use the follow formats:
+
+* https://www.youtube.com/watch?v=**6_4M1sd23V0**
+* http://youtu.be/**6_4M1sd23V0**
+* **6_4M1sd23V0**
+
+**Alternative image**
+
+This image will be used as a fallback for mobile devices for performance reasons please note that this only will be visible in mobile devices.
+
+**Video Full Height**
+
+If this option is set to TRUE the video will use the full height of the screen automatically, you can set this option to false to use a custom height.
+
+**Video Height (in pixels)**
+
+If the previous option is set to false, the section will used this value (in pixels) to set a custom height. ex. **500px**
+
+**Video Opacity**
+
+When the video start to play the opacity is set in 40%, if you want to change this value just select a value from the dropdown menu.
+
+**Video Start At**
+
+With this option you can set the exact time where the video will start to play, please use a numeric value. ex. 4 for 4 seconds.
+
+**Video Ends At**
+
+With this option you can set the exact time where the video will end to play, please use a numeric value. ex. 120 for 2 minutes.
+
+**Video Play Button**
+
+The background video will play automatically with a opacity and in muted way. If you use this option a play button will be shown under the slider content and when the user click on it the sliders will disappears and the video will shown with full opacity and with sound.
+
+**Video Mute at Start**
+
+You can start the video unmuted if you want this option allows you to do that, the default value is **Muted**
+
+**Video Loop**
+
+You can play the video in a loop or just one.
+
+**Exit Text Indication**
+
+When the user use the play button and the video enter in a "full screen" mode a text appears to let the user know he can click on the video to return to the initial state.
+
+**Slides**
+
+The slides use two options Title and Description this slides will rotate automatically. You can use any shortcode in the description field.
+
+![Voyant Video Slider](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Video-Slider.png)
 
 
 #### Image Slider
-#### Mega Title
-#### Page Title
-#### Pin Switch
-#### Timeline
-#### Testiminials
-#### Team Voyant
-#### Blog Loop
 
+Sometimes a Video as background can be not the first choice, if this is the case, you can get the same goodies that  the Video Slider offers but in this section you use an image for a background.
+
+**Image Full Height**
+
+If this option is set to TRUE the video will use the full height of the screen automatically, you can set this option to false to use a custom height.
+
+**Image Height (in pixels)**
+
+If the previous option is set to false, the section will used this value (in pixels) to set a custom height. ex. **500px**
+
+**Slides**
+
+The slides use two options Title and Description this slides will rotate automatically. You can use any shortcode in the description field.
+
+**Background Image**
+
+The image to use as background.
+
+![Voyant Image Slider](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Image-Slider.png)
+
+
+#### Mega Title
+
+The Meta Title section allows you to place beautiful titles for your content, using text as a faint shadow, highlighting and complementing the main title. The Main Title section can be used in full-width and content-width mode and can be aligned to the left or to the right.
+
+![Voyant Mega Menu](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Mega-Menu.png)
+
+
+#### Page Title
+
+The Page Title section allows you to show the pages and posts titles in a beautiful way, setting a image background to highlight the title and if you use the "[WordPress SEO][3]" plugin by Yoast a breadcrumbs are added.
+
+![Voyant Page Title](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Page-Title.png)
+
+**Breadcrumbs**
+
+To activated the breadcrumbs option you need the "[WordPress SEO][3]" plugin by Yoast.
+
+Once the plugin is active navigate to: **SEO > Internal Links** locate the **Enable Breadcrumbs** and click on it to activate.
+
+![Voyant Breadcrumbs](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Breadcrumbs.png)
+
+
+#### Pin Switch
+
+The Pin Switch section allows you to show small information blocks using a elegant "bullet" navigation.
+
+Each "**Pin**" used the follow 4 options:
+
+* **Content Title**
+* **Content Text**
+* **Icon Title** 
+* **Icon**
+
+![Voyant Pin Switch](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Pin-Switch.png)
+
+#### Timeline
+
+The Timeline section is useful to show events or small information blocks in a progressive view with 4 options: Title, Description, Date (Optional), Icon. This section can be aligned to de right, left or in a odd/even view.
+
+![Voyant Pin Switch](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Timeline.png)
+
+
+#### Testiminials
+
+The Testimonials section allows you to add clients testimonials or quotes in a easy way you can use or not a avatar for each testimonial.
+
+**Options**
+
+**Color Theme** 
+
+You can choose a "theme" color for each section clone. The **Dark** theme need to be used if you use a dark image or color as a background and **Light** need to be used if you use a light image or background color.
+
+**Avatar Shape**
+
+If you want to use avatar in the testimonials you can choose 3 shapes for the image: 
+
+* Circle
+* Drop Botom-Left to Top-Right (Default)
+* Drop Top-Left Bottom-Right
+
+**Avatar Options**
+
+* Name
+* Testimonial/Quote
+* URL (Optional)
+* Avatar Image (Optional)
+
+![Voyant Pin Switch](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Testimonials.png)
+
+	
+#### Shortcodes
+
+**Highlight**
+
+This shortcode wrap a text in a span tag using the **highlight** class, this class use the **Link Base Color** setting.
+
+```
+.highlight{
+	color: @pl-link;
+}
+```
+
+**White**
+
+This shortcode wrap a text in a span tag using the **white** class, this class set the text to white.
+
+```
+.white{
+	color: white !important;
+}
+```
+
+#### Helper CSS classes
+
+This classes can be used in each section via the **Custom Styling Classes** 
+
+
+```
+.detach{
+	font-size: 22px;
+	line-height: 30px;
+}
+
+.medium-text{
+	font-size: 18px;
+}
+
+.margin-top-100{
+	margin-top: 100px;
+}
+
+.margin-top-75{
+	margin-top: 75;
+}
+
+.margin-top-50{
+	margin-top: 50px;
+}
+
+.margin-top-25{
+	margin-top: 25px;
+}
+
+.highlight{
+	color: @pl-link;
+}
+
+.reverse-title{
+	[data-sync="textbox_title"]{
+		color: @pl-base;
+		background: @pl-link;
+		text-align: center;
+		padding: 5px;
+		margin-bottom: 10px;
+	}
+}
+
+.white{
+	color: white !important;
+}
+
+.bold{
+	font-weight: 700;
+}
+```
+
+**Section Using the helper classes**
+
+![Voyant Helpers](http://enriquechavez.co/wp-content/uploads/2014/06/Voyant-Helpers.png)
 
 
  [1]: https://www.pagelines.com/my-account/
