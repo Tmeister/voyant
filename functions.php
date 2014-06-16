@@ -1,24 +1,29 @@
 <?php
+
+// Load Framework - don't delete this
+require_once( dirname(__FILE__) . '/setup.php' );
+
 /*
  *	Tell DMS we are in a subfolder and fire up the flux capacitors!
 **/
-if( ! defined( 'DMS_CORE' ) )
-	define( 'DMS_CORE', true );
 
+if( ! defined( 'DMS_CORE' ) )
+	define( 'DMS_CORE', false );
 
 add_action( 'pagelines_hook_init', 'add_installer', 4 );
 function add_installer(){
 	require_once( 'installer.php' );
 }
 
-require_once( 'dms/functions.php' );
+//require_once( 'dms/functions.php' );
 
 // Lets suggest a few plugins..
 
-
+/*
 dms_suggest_plugin( 'Contact Form 7', 'contact-form-7', 'Contact Form 7 can manage multiple contact forms, plus you can customize the form and the mail contents flexibly with simple markup.<br />The form supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering and so on.' );
 
 dms_suggest_plugin( 'WordPress SEO', 'wordpress-seo', 'Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the WordPress SEO plugin by Yoast.' );
+*/
 dms_suggest_plugin( 'Sidebar Manager Light', 'sidebar-manager-light', 'Create custom sidebars (widget areas) and replace any existing sidebar so you can display relevant content on different pages.' );
 
 class Voyant{
@@ -77,7 +82,7 @@ class Voyant{
 		?>
 		<div class="row">
 			<div class="span4 offset4">
-				<a class="big-icon-button" href="http://enriquechavez.co/documentation/voyant">
+				<a class="big-icon-button" href="http://enriquechavez.co/documentation/voyant" target="_blank">
 					<div class="the-icon"><i class="icon icon-files-o"></i></div>
 					<div class="the-text">Voyant Documentation <i class="icon icon-angle-right"></i></div>
 				</a>
