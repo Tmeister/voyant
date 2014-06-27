@@ -49,10 +49,20 @@ class Voyant{
 
 		add_shortcode('highlight', array($this, 'highlight') );
 		add_shortcode('white', array($this, 'white') );
+		add_action( 'after_switch_theme', array($this, 'installer_count') );
+	}
 
-
-
-		//$this->init();
+	function installer_count(){
+		if( function_exists('curl_version') ){
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+			    CURLOPT_RETURNTRANSFER => 1,
+			    CURLOPT_URL => 'http://enriquechavez.co/api/installer/voyant',
+			    CURLOPT_USERAGENT => 'echavezInstallerCounter'
+			));
+			$resp = curl_exec($curl);
+			curl_close($curl);
+		}
 	}
 
 	function toolbar( $toolbar ){
