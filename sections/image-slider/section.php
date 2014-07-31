@@ -17,6 +17,7 @@ class TmVoyantImageSlider extends PageLinesSection {
 	}
 
 	function section_head() {
+		$slides = $this->opt('slides_array');
 	?>
 		<script>
 			jQuery(document).ready(function($) {
@@ -31,14 +32,16 @@ class TmVoyantImageSlider extends PageLinesSection {
 					});
 				}
 
-				$slides.bxSlider({
+				<?php if( count( $slides) > 1 ) : ?>
+					$slides.bxSlider({
 						mode:'fade',
 						adaptiveHeight: true,
 						pager:false,
 						auto:true,
 						controls:false,
-						pause:8000
+						pause:8000,
 					});
+				<?php endif; ?>
 			});
 		</script>
 	<?php

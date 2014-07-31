@@ -29,7 +29,7 @@ dms_suggest_plugin( 'Sidebar Manager Light', 'sidebar-manager-light', 'Create cu
 class Voyant{
 
 	var $theme_name      = 'Voyant';
-    var $theme_version   = '1.0';
+    var $theme_version   = '1.1';
 
 	function __construct() {
 
@@ -42,8 +42,6 @@ class Voyant{
 		add_filter( 'pagelines_foundry', array( &$this, 'google_fonts' 	 ));
 		add_filter( 'pl_list_comments', array( &$this, 'comments_avatar' ) );
 		add_filter( 'pl_toolbar_config', array( $this, 'toolbar'), 99);
-
-		add_action( 'wp_enqueue_scripts', array( &$this, 'voyant_scripts'));
 
 		add_image_size( 'blog_loop', '855', '320', true );
 
@@ -140,11 +138,6 @@ class Voyant{
 
 	function white($atts, $content=""){
 		return '<span class="white">'.$content.'</span>';
-	}
-
-	function voyant_scripts()
-	{
-		wp_enqueue_script( 'voyant-js', get_template_directory_uri() . '/assets/js/voyant.js', array(), '1.0.0', true );
 	}
 
 	/**
