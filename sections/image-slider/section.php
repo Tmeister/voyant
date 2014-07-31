@@ -39,7 +39,7 @@ class TmVoyantImageSlider extends PageLinesSection {
 						pager:false,
 						auto:true,
 						controls:false,
-						pause:8000,
+						pause:8000
 					});
 				<?php endif; ?>
 			});
