@@ -107,10 +107,11 @@
 				}
 
 				$video.mb_YTPlayer();
-				$video.on('YTPUnstarted', function(event) {
+				// CHANGE THE EVENT  YTPUnstarted TO YTPStart
+				$video.on('YTPStart', function(){
 					$preloader.remove();
 					$contents.fadeIn('slow');
-				});
+				})
 
 				if( $slides.find('li').length > 1 ){
 					slider = $slides.bxSlider({
